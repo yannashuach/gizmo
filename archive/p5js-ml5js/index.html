@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title> Emotion Recognition </title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+
+  <style></style>
+</head>
+
+<body>
+  <h2> Emotion Recognition </h2>
+  <div id="videoContainer"></div>
+  <p id="status">Loading Model...</p>
+  <br /><p>
+    <button id="addClassA">Add a Happy Face</button>
+    <button id="resetA">Reset Happiness Prediction</button>
+    </p><p><span id="exampleA">0</span> A examples</p>
+    <p>| Happniess Probability: <span id="confidenceA">0</span></p>
+
+    <br /><button id="addClassB">Add a Sad Face</button>
+    <button id="resetB">Reset Sadness Prediction</button>
+    <p><span id="exampleB">0</span> B examples</p>
+    <p>| Sadness Probability: <span id="confidenceB">0</span></p>
+  <br />
+  <p>
+    <button id="buttonPredict">Start predicting!</button><br />
+    <button id="clearAll">Clear all classes</button><br />
+  </p>
+  <p>
+    KNN Classifier with mobileNet model labeled this
+    as Class: <span id="result">...</span>
+    with a confidence of <span id="confidence">...</span>
+  </p>
+  <script src="sketch.js"></script>
+</body>
+
+</html>

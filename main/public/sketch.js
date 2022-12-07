@@ -5,6 +5,8 @@ let facemesh;
 let predictions = [];
 let normalized = new Array(468*3);
 
+var emotions;
+
 function setup() {
   socket = io.connect(window.location.origin);
   const canvas = createCanvas(640, 480);
@@ -26,34 +28,32 @@ function setup() {
     console.log(data);
   });
 
-  // socket.on('outputData',
-  //   function(data) {
+  socket.on('outputData',
+    function(data) {
+      emotions = data.args[0].value;
 
-  //     r = map(data.args[0].value, 0, 1, 0, 255);
-  //     g = map(data.args[1].value, 0, 1, 0, 255);
-  //     b = map(data.args[2].value, 0, 1, 0, 255);
-
-  //     for(var n = 0; n < data.args.length; n++) {
-  //       println(n + ": " + data.args[n].value);
-  //     }
-  //   }
-  // );
-
-  socket.on('outputData', (arg) => {
-    console.log(args);
-  });
+      for(var n = 0; n < data.args.length; n++) {
+        println(n + ": " + data.args[n].value);
+      }
+    }
+  );
 }
 
-// var emotion;
 
 function draw() {
- image(video, 0, 0, width, height);
+  image(video, 0, 0, width, height);
+  if(emotions==1) {
+    text('Neutral', 10, 30);
+  } else if (emotions==2){
+    text('Happy', 10, 30); 
+  } else if (emotions==3){
+    text('Suprised', 10, 30); 
+  }
+
 
  // We can call both functions to draw all keypoints and the skeletons
  drawBoxes();
  drawKeypoints();
-
-//  console.log('Emotion: ' + emotion);
 }
 
 function mouseMoved() {
